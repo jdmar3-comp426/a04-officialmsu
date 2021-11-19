@@ -42,7 +42,7 @@ app.get("/app/user/:id", (req, res) => {
 // UPDATE a single user (HTTP method PATCH) at endpoint /app/update/user/:id
 app.get("/app/update/user/:id", (req, res) => {	
 	const stmt = db.prepare("UPDATE userinfo SET user = COALESCE(?,user), pass = COALESCE(?,pass) WHERE id = " + req.body.user).patch();
-	res.status(200).json(stmt);
+	res.status(200).json({"message":"1 record deleted: ID " + req.body.user.params.id + " (200)" });
 });
 // DELETE a single user (HTTP method DELETE) at endpoint /app/delete/user/:id
 app.get("/app/delete/user/:id", (req, res) => {	
