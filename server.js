@@ -36,7 +36,7 @@ app.get("/app/users/", (req, res) => {
 
 // READ a single user (HTTP method GET) at endpoint /app/user/:id
 app.get("/app/user/:id", (req, res) => {	
-	const stmt = db.prepare("SELECT * FROM userinfo WHERE id = " + req.params.id).get();
+	const stmt = db.prepare("SELECT * FROM userinfo WHERE id = ?").get(req.params.id);
 	res.status(200).json(stmt);
 });
 // UPDATE a single user (HTTP method PATCH) at endpoint /app/update/user/:id
@@ -46,7 +46,7 @@ app.get("/app/update/user/:id", (req, res) => {
 });
 // DELETE a single user (HTTP method DELETE) at endpoint /app/delete/user/:id
 app.get("/app/delete/user/:id", (req, res) => {	
-	const stmt = db.prepare("DELETE FROM userinfo WHERE id = " + req.params.id).delete();
+	const stmt = db.prepare("DELETE FROM userinfo WHERE id = ?").delete(req.params.id);
 	res.status(200).json(stmt);
 });
 // Default response for any other request
